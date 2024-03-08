@@ -2,12 +2,10 @@ import sys
 import requests
 from urllib import *
 from urllib.parse import urljoin
-
 from bs4 import BeautifulSoup
 
 
 visited_url = set()
-
 def spider_urls(url, keyword):
     try:
         response = requests.get(url)
@@ -21,10 +19,9 @@ def spider_urls(url, keyword):
         urls = []
         for tag in a_tag:
             href = tag.get("href")
-
             if href is not None and href != "":
                 urls.append(href)
-            #print(urls)
+    
         for new_urls in urls: #Recursive scrapping -> scrape the collected urls 
             if new_urls not in visited_url:
                 visited_url.add(url)
@@ -34,10 +31,6 @@ def spider_urls(url, keyword):
                     spider_urls(url_join, keyword)
             else:
                 pass
-
-
-
-
 
 url = input(f"input url you want to scrap:  ")
 keyword = input(f"input the keyword you want to search for in a url:  ")
