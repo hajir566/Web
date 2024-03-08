@@ -24,7 +24,7 @@ def spider_urls(url, keyword):
     
         for new_urls in urls: #Recursive scrapping -> scrape the collected urls 
             if new_urls not in visited_url:
-                visited_url.add(url)
+                visited_url.add(new_urls)
                 url_join = urljoin(url, new_urls)
                 if keyword in url_join:
                     print(url_join)
